@@ -1,0 +1,906 @@
+#Має вивести віконну програму для намалювання графіку Гармонічного коливання
+from tkinter import *
+import math
+root =Tk()
+root.title('Їбашу пса')
+root.geometry('1320x640')
+
+canvas = Canvas(root, width=1040, height=640, bg='#002')
+
+canvas.pack(side='right')
+
+#лінія сітки по вертикалі
+for y in range(21):
+    k = 50 * y
+    canvas.create_line(20+k, 620, 20+k, 20, width=1, fill='#191938')
+
+#лінія сітки по горизонталі
+for x in range(13):
+    k = 50 * x
+    canvas.create_line(20, 20 + k, 1020, 20 + k, width=1, fill='#191938')
+
+#Лінії координат ікс та ігрек
+canvas.create_line(20, 20, 20, 620, width=1, arrow=FIRST, fill='white') #ВІсь ігрек
+canvas.create_line(10, 320, 1020, 320, width=1, arrow=LAST, fill='white') #вісь Ікс
+
+canvas.create_text(20, 10, text='300', fill='white')
+canvas.create_text(20, 630, text='-300', fill='white')
+canvas.create_text(10, 310, text='0', fill='white')
+canvas.create_text(1030, 30, text='1000', fill='white')
+
+label_w = Label(root, text='Циклічна частота:')
+label_w.place(x=0, y=10)
+label_phi = Label(root, text='зміщення графіка по х:')
+label_phi.place(x=0, y=30)
+label_A = Label(root, text='Амплітуда:')
+label_A.place(x=0, y=50)
+label_dy = Label(root, text='зміщення графіка по у:')
+label_dy.place(x=0, y=70)
+#Віджети для введення значень
+entry_w = Entry(root)
+entry_w.place(x=150, y=10)
+entry_phi = Entry(root)
+entry_phi.place(x=150, y=30)
+entry_A = Entry(root)
+entry_A.place(x=150, y=50)
+entry_dy = Entry(root)
+entry_dy.place(x=150, y=70)
+
+def sinus(w, phi, A, dy):
+    global sin
+    sin = 0
+    xy = []
+    for x in range(1000):
+        y=math.sin(x * w)
+        xy.append(x + phi)
+        xy.append(y * A + dy)
+    sin = canvas.create_line(xy, fill='blue')
+
+def clean():
+    canvas.delete(sin)
+
+btn_calc = Button(root, text='Порахувати')
+btn_calc.bind('<Button-1>', lambda event: sinus(float(entry_w.get()),
+                                               float(entry_phi.get()),
+                                               float(entry_A.get()),
+                                               float(entry_dy.get())))
+btn_calc.place(x=10, y=100)
+
+btn_clean = Button(root, text="Очистити")
+btn_clean.bind('<Button-1>', lambda event: clean())
+btn_clean.place(x=100, y=100)
+
+root.mainloop()
+
+#код який виводить значення переміної text
+text="хуй"
+print(text)
+
+#код який виводить текст з пробілом за допомогою rstrip()
+favorite_language = 'python'
+favorite_language.rstrip()
+
+#В даному варіанті виведеться значення без пробіла за допомогою rstrip()
+favorite_language = 'python '
+favorite_language = favorite_language.rstrip()
+favorite_language
+
+#Зняття пропусків за допомогою strip()
+favorite_language = ' python '
+favorite_language.strip()
+
+#Зняття пропускy зліва за допомогою lstrip()
+favorite_language = ' python'
+favorite_language.strip()
+
+#Виводить кожне слово в іншому рядку за допомогою \n між словами
+print("Languages:\nпітон\nсіська\nJavaScriptiz")
+
+#Виведення тексту маленькими буквами через .lower і великими буквами через .upper а .title виводить першу букву великою
+name = "Син Шлюхи"
+print(name.upper())
+print(name.lower())
+print(name.title())
+
+#арифметичні дії
+345+321
+345-321
+345*321
+345/321
+3**5 #зведення до квадрату де друга цифра показник степення на яку треба звести перше число
+
+#добавлення елемента в кінець списку через метод .append 
+names=['майнер', 'фіфєр', 'підар', 'дотєр']
+names.append('Син шлюхи')
+print(names)
+#добавлення елемента в список через метод .insert
+names.insert(0, 'баблквасєр')
+del names[-1] #видалення елемента в списку знаючи його індекс
+popped_names = names.pop() # видалення елемента з списку но його можна в майбутньому використати через .pop
+print(names)
+['баблквасєр', 'майнер', 'фіфєр', 'підар']
+print(popped_names)
+
+#генератор списку з чисел піднятих до квадрату 
+squares=[value**2 for value in range(1, 11)]
+print(squares)
+
+play_game = ['football', 'basketball', 'volleyball', 'hockey', 'golf', 'tennis']
+print(play_game[2:])#виведення списку починаючи з 2 елемента
+print(play_game[0:3])#виведення списку починаючи з 0 по 2 елемент включно
+print(play_game[2:5])#виведення списку починаючи з 2 по 4 елемент включно
+
+print("Го виведу якийсь список ігор:")
+for play in play_game[:3] #цикл який виводить список перших 3-х елементів
+    print(play.title())
+
+#цикл який виконує умову покупки при присутності товару
+favorite_fruits=['banan', 'apple', 'orange', 'chery']
+for fruits in favorite_fruits:
+    if fruits == 'chery':
+        print("Зараз зима поки нема вишні")
+    else:
+        print(f"Додано в кошик {fruits}")
+
+#Виконання цикла при умові присутності списка
+favorite_fruits=['banan', 'apple', 'orange', 'chery']
+if favorite_fruits:
+    for fruits in favorite_fruits:
+        print(f"Добавляю в кошик - {fruits}")
+    print("\nЦе ваші покупки")
+else:
+    print("Нажаль нічого більше не можем вам запропонувати")
+
+#Тут цикл не виконується бо список пустий
+favorite_fruits=[]
+if favorite_fruits:
+    for fruits in favorite_fruits:
+        print(f"Добавляю в кошик - {fruits}")
+    print("\nЦе ваші покупки")
+else:
+    print("Нажаль нічого більше не можем вам запропонувати")
+
+#цикл який перевіряє наявність товару в магазині
+Order = ['strawberry', 'banan']
+fruits_shop = ['apple', 'banan', 'orange', 'chery']
+for fruits in fruits_shop:
+    if fruits in Order:
+        print(f"Добавляю в кошик продукт {fruits}")
+    else:
+        print("Нажаль в нас нема такої позиції")
+print("\nОплатіть будь ласка замовлення")
+
+
+#Фрагмент кода калькулятора
+label_a = Label(root, text='Перша цифра')
+label_a.place(x=155, y=10)
+label_b = Label(root, text='Друга цифра')
+label_b.place(x=155, y=30)
+label_c = Label(root, text="Результат")
+label_c.place(x=275, y=50)
+#Віджети для введення значень
+entry_a = Entry(root)
+entry_a.place(x=30, y=10)
+entry_b = Entry(root)
+entry_b.place(x=30, y=30)
+
+
+btn_calc = Button(root, text='Порахувати')
+btn_calc.bind('<Button-1>', lambda event: sum(a, b))
+                                               
+btn_calc.place(x=10, y=75)
+
+btn_clean = Button(root, text="Очистити ")
+btn_clean.bind('<Button-1>'), lambda event: clean()
+btn_clean.place(x=88, y=75)
+
+
+#через метод .get() добавлення елемента в словник
+favorite_games={
+    'fugu':'brawl stars',
+    'quazil':'minecraft',
+    'bob marley':'dota2',
+    'gg':'footbal manager',}
+games = favorite_games['bob marley'].title()
+print(f"Артурчік любить глину місити в {games}.")
+other_friends = favorite_games.get('ВАФЛЯ', 'Халдєй')
+print(other_friends)
+
+#Красивий словник термінів в програмуванні
+vocabulary={'переміна':'Присвоєння значення якомусь слову',
+            'список':'рядок елементів в квадратних дужках',
+            'цикл':'перебирання елементів програми',
+            'кортеж':'список який неможливо змінити під час використання програми',
+            'IDE':'середовище розробки програм'}
+print(f"\nпереміна - {vocabulary['переміна']}")
+print(f"\n список - {vocabulary['список']}")
+print(f"\n кортеж - {vocabulary['кортеж']}")
+print(f"\nцикл - {vocabulary['цикл']}")
+print(f"\nIDE - {vocabulary['IDE']}")
+
+#перебір списку users. Метод .items() використовується для повернення пари ключ-значення.
+users={'nickname':'fugu',
+       'first_name':'Ярослав',
+       'last_name':'Дільний'}
+for key, value in users.items():
+    print(f"{key}:{value}")
+
+
+#Виведення певного повідомлення для людини при наявності в списку і словнику його ім'я
+brawl_stars={'Славік':'fugu',
+             'Іван':'gg',
+             'Артур':'Bob Marley',
+             'Вова':'Quazil'}
+bs=['Славік', 'Іван']
+for n in brawl_stars.keys():
+    if n in bs:
+        ponyatya=brawl_stars[n]
+        print(f"{n} не вафлить")
+    else:
+        pituh=brawl_stars[n]
+        print(f"{n}  вафлить")
+#Добавка умови якшо відсутнє ім'я в списку або словнику
+if 'Женя' not in brawl_stars.keys():
+        print(f"Піздуй нахуй Женя")
+#Виводить по алфавітному порядку ключі словника через метод .keys()
+for n in sorted(brawl_stars.keys()):
+    print(f"{n} хуй")
+#Виводить по алфавітному порядку значення ключів словника через метод .values()
+for n in sorted(brawl_stars.values()):
+    print(f"{n} хуй")
+    
+#Перебір списку і виведення без повторень через set()
+love_games_in_friends={'ivan':'bs',
+                       'vova':'minecraft',
+                       'slavik':'bs',
+                       'Artur':'minecraft'}
+for games in set(love_games_in_friends.values()):
+    print(games.upper())
+
+
+#Множество (не словник!!!!!)
+games={'dota', 'bs', 'minecraft', 'cs', 'bs'}
+print(games)
+
+
+#добавлення в список 30 словникових елементів та виведення перших 5
+geese =[]
+for gos in range(30):
+    new_goose={'color':'green', 'point':5, 'speed':'low'}
+    geese.append(new_goose)
+for goose in geese[:5]:
+    print(goose)
+print(f"кількість гусей = {len(geese)}")
+
+#Умова if міняє першим 3-м елементам значення ключів
+geese = []
+for gos in range(30):
+    new_goose = {'color': 'green', 'points': 5, 'speed': 'slow'}
+    geese.append(new_goose)
+
+for goose in geese[0:3]:
+    if goose['color'] == 'green':
+        goose['color'] = 'yellow'
+        goose['speed'] = 'medium'
+        goose['points'] = 10
+
+#міняє ше 1 раз значення ключів
+for goose in geese[0:5]:
+    print(goose)
+
+geese = []
+for gos in range(30):
+    new_goose = {'color': 'green', 'points': 5, 'speed': 'slow'}
+    geese.append(new_goose)
+
+for goose in geese[0:3]:
+    if goose['color'] == 'green':
+        goose['color'] = 'yellow'
+        goose['speed'] = 'medium'
+        goose['points'] = 10
+
+    if goose['color'] == 'yellow':
+        goose['color'] = 'red'
+        goose['speed'] = 'fast'
+        goose['points'] = 15
+
+for goose in geese[0:5]:
+    print(goose)
+
+#Виведення списку в словнику
+caif={'hobby':'ігри',
+         'players':['BS', 'GD']}
+print(f"Твоє хоббі це {caif['hobby']}")
+for play in caif['players']:
+    print("\t" + play)
+
+
+#перебір словника з списками
+favorite_games={'Fugu':['BS', 'CS'],
+                'Bob Marley':['DOTA2', 'Pay Day 2'],
+                'Quazil':['Minecraft'],
+                'Gg':['FM','Fifa']
+                }
+
+for name, games in favorite_games.items():
+    print(f"\nЛюбима гра {name} це {games}")
+
+#можна замінити верхній цикл для інакшого виведення списку
+for name, games in favorite_games.items():
+    print(f"\nЛюбима гра {name} це:")
+    for gamers in games:
+        print(f"\t{gamers}")
+
+#перебір словників в словнику
+users={'fugu':{'first': 'Yaroslav',
+'last': 'Dilnyi',
+'location': 'Paporotna',},
+       'gg':{'first': 'Ivan',
+'last': 'Khapko',
+'location': 'sushka',}
+       }
+
+for user, info in users.items():
+    print(f"\nUser: {user}")
+    full_name = f"{info['first']} {info['last']}"
+    location = info['location']
+    print(f"\tFull name: {full_name.title()}")
+    print(f"\tLocation: {location.title()}")
+
+#Реалізація функції input() з допомогою int()
+height=input("Скільки раз ти їбашив собак?")
+height=int(height)
+if height >= 5:
+    print("Єбать ти крутой!!!")
+else:
+    print("Я за тебе радий чмоня")
+
+#Перевірка умови з остачою
+number=int(input("Яку цифру для роздвіга берем?"))
+if number %2 == 0:
+    print("Ну шо сучара роздвігайся")
+else:
+    print("Можеш іти нахуй")
+
+#простий цикл while
+numb=0
+while numb <10:
+    print("хуй")
+    numb+=1
+
+#Тест на підара
+question="Ти любиш хлопців в сраку?"
+question+="Пиши Так або Ні."
+message="  "
+while message != 'Так':
+    message = input(question)
+
+    if message == 'Так':
+        print("Я так і знав")
+
+#Приклад найпростішої функції. def задає функцію
+def підар():
+    print("Я їбашу пса, ти блять мудак шо за хуйня, блять підарасня")
+
+#калькулятор
+def arif():
+    a=int(input("впиши число а:"))
+    b=int(input("впиши число b:"))
+    i=input("Яку дію виконати")
+    if i == '+':
+        print(a+b)
+    elif i == '-':
+        print(a-b)
+    elif i == '*':
+        print(a*b)
+    elif i == '/':
+        print(a/b)
+    elif i =='**':
+        print(a**b)
+    
+#Виводить словник значень     
+def підар(fname, lname):
+    person={'first':fname, 'last':lname}
+    return person
+
+people=підар('Мася', 'Шалава')
+print(people)
+
+#шось неробоче
+def build_person(first_name, last_name):
+    #Возвращает словарь с информацией о человеке.
+    person = {'first': first_name, 'last': last_name}
+    if age:
+        person['age'] = age
+    return person
+musician = build_person('jimi', 'hendrix', age=13)
+print(musician)
+
+#Функція запиту імені та призвища і їх виведення
+def імя(first_name, last_name):
+    full_name = f"{first_name} {last_name}"
+    return full_name.title()
+
+while True:
+    print("\nскажіть своє імя:")
+    fname = input("ім'я")
+    lname = input("прізвице")
+
+    named = імя(fname, lname)
+    print(named)
+
+#попередня функція доповнена умовами завершення цикла
+def імя(first_name, last_name):
+    full_name = f"{first_name} {last_name}"
+    return full_name.title()
+
+while True:
+    print("\nскажіть своє імя:")
+    print("\nжмакай q для закінчення цикла")
+    fname = input("ім'я")
+    if fname == 'q':
+        break
+
+    lname = input("прізвице")
+    if lname == 'q':
+        break
+
+    named = імя(fname, lname)
+    print(named)
+
+#перебір списку за допомогою функції
+def друзі(names):
+    for name in names:
+        cc=f"{name.title()} піздуй блять нахуй!"
+        print(cc)
+friends=['Іван', 'Вова', 'Артур']
+
+#цикл для передачі елементів в інший список і виведення іншого списку
+sexshop=['батіг', 'ділдо', 'штучна вагіна', 'Максим напрокат']
+unconfirm=[]
+while sexshop:
+    items=sexshop.pop()
+    print(f"бракує {items}")
+    unconfirm.append(items)
+print("Список неготових предметів:")
+for sex in unconfirm:
+    print(sex)
+
+#Виконує то саме шо і попередній код але реалізовано через 2 функції
+def shop(assortment, uncomfirm):
+    while assortment:
+        items=assortment.pop()
+        uncomfirm.append(items)
+
+def речі(uncomfirm):
+    for uncomfirmed in uncomfirm:
+        print(uncomfirmed)
+
+assortment=['папір', 'ручки', 'олівці', 'резинка']
+uncomfirm=[]
+
+shop(assortment, uncomfirm)
+речі(uncomfirm)
+
+def show_messages(message):
+    for message in messages:
+        print(message)
+
+
+def send_messages(messages, copy_messages):
+    while messages:
+        items=messages.pop()
+        copy_messages.append(items)
+    for notification in copy_messages:
+            print(notification)
+    
+messages=['Нахуй тебе їбали бомжі?', 'Мася ти підар', 'піздуй нахуй', 'та бляяяяять']
+copy_messages=[]
+send_messages(messages[:], copy_messages)
+
+#виконує то саме шо і попереднє але в кінці [:] робить копію списка
+def show_messages(message):
+    for message in messages:
+        print(message)
+
+
+def send_messages(messages, copy_messages):
+    while messages:
+        items=messages.pop()
+        copy_messages.append(items)
+    for notification in copy_messages:
+            print(notification)
+    
+messages=['Нахуй тебе їбали бомжі?', 'Мася ти підар', 'піздуй нахуй', 'та бляяяяять']
+copy_messages=[]
+send_messages(messages[:], copy_messages)
+
+#Функція для створення кортеджа *сolors створює кортедж при введені одного або декількох аргументів функції
+def cube(*colors):
+    print(colors)
+
+cube('white', 'yellow', 'green', 'orange', 'blue', 'red')    
+    
+#функція спрощена циклом
+ def cube(*colors):
+    for color in colors:
+        print(color)
+cube('white', 'yellow', 'green', 'orange', 'blue', 'red')
+   
+#добавлення в функцію ше одного аргумента
+def cube(size, *colors):
+    print(f"розмір кубіка {size}x{size}")
+
+    for color in colors:
+        print(color)
+cube(5, 'white', 'yellow', 'green', 'orange', 'blue', 'red')   
+
+#функція яка виводить інформацію в словнику **user_info-для добавлення в словник нових пар ключ-значення 
+def account(fname, lname, **user_info):
+    user_info['first name']=fname
+    user_info['last name']=lname
+    return user_info
+
+user=account('Fugu', 'gamer', hobby='porno', location='Lviv', game='BS')
+print(user)
+
+
+#import lesson копіює функції код з файлу лессон для відтворення йогов іншому файлі. другий рядок виконує функцію задану в попередньому файлі
+import lesson
+lesson.cube(5, 'white', 'yellow', 'green', 'orange', 'blue', 'red')
+
+#as kr спрощує виклик функції в модулі
+from lesson import cube as kr
+kr(4, 'white', 'yellow', 'green', 'orange', 'blue', 'red')
+kr(7, 'white', 'yellow', 'green', 'orange', 'blue', 'red')
+
+#Простий приклад класу. Останні 2 рядка коду викликають методи класу. Masya і Vladik-об'єкти класу shalava 
+class shalava():
+    #проста модель шалави
+    def __init__(self, name, age):
+        self.name=name
+        self.age=age
+
+    def sex(self):
+        print(f"{self.name} нагинайся будеш працювати")
+    
+    def poza(self):
+        print(f"{self.name} лягай на стіл")
+
+Serhiy=shalava('Сергій', 14)
+Vladik=shalava('Владік', 13)
+Serhiy.sex()
+Vladik.poza()
+
+#класс який зміг реалізувати. Атрибут power- доданий атрибут зі значенням після оголошення інших в класі 
+і можна завжди змінити значення як напряму так і через фуккцію. В методі Plused добавленна перевірка умови power, 
+і добавленна функція increment_Power для добавлення значення power
+class Birds():
+    def __init__(self, speed, color, health):
+        self.speed=speed
+        self.color=color
+        self.health=health
+
+    def Characteristic(self):
+        charecteristic={'швидкість':self.speed, 'колір':self.color, 'життя':self.health}
+        print(charecteristic)
+
+    def Power(self):
+        print(f"Його сила = {self.power}")
+
+    def Plused(self, dynamometer_normal):
+        if dynamometer_normal >= self.power:
+            self.power = dynamometer_normal
+        else:
+            print("Чото слабовато")
+
+    def increment_Power(self, dynamometer_normal):
+        self.power += dynamometer_normal
+
+goose=Birds(23, 'white', 50)
+goose.Characteristic()
+goose.power=5
+goose.Plused(3)
+goose.increment_Power(43)
+goose.Power()
+
+#клас нащадок.super()- це функція виклику батьківського класса.В класі Goose метод Power виконує іншу функцію
+сlass Goose(Birds):
+    def __init__(self, speed, color, health):
+        super().__init__(speed, color, health)
+
+    def Power(self):
+        print(f"Гусь ділиться на {self.separation} слабших персонажа")
+
+Ygoose=Goose(30, 'yellow', '75')
+Ygoose.Characteristic()
+Ygoose.Power()
+
+#той код класса ше пригодиться
+class Ресторан():
+    def __init__(self, name, type):
+        self.name=name
+        self.type=type
+        self.number_served=0
+
+    def Names(self):
+        print(f"{self.name} - це ресторан {self.type} кухні")
+    def Opened(self):
+        self.number_served = client
+
+    def increment_number_served(self, client):
+        client += self.number_served
+
+class Icecream(Ресторан):
+    def __init__(self, name, type):
+        super().__init__(name, type)
+        self.flavors=['малинове', 'полуничне', 'лимоне', 'шоколадне']
+
+    def Flavors(self):
+        for ice in self.flavors:
+            print(ice)
+
+ice_cream=Icecream('Холодок', 'світової')
+ice_cream.Flavors()
+
+#реалізація класу Privileges() для спрощення роботи інших класів.
+class User():
+    def __init__(self, fname, lname, location, hobby):
+        self.fname=fname
+        self.lname=lname
+        self.location=location
+        self.hobby=hobby
+        self.login_attempts=0
+
+    def describe_user(self):
+        print(f"Дані користувача: {self.fname} {self.lname}, Локація:{self.location}, Хоббі:{self.hobby}")
+
+    def increment_login_attempts(self):
+        self.login_attempts += 1
+        print(f"{self.fname} маєш {self.login_attempts} спробу входу")
+    
+    def reset_login_attempts(self):
+        self.login_attempts = 0
+        print(f"{self.fname} маєш {self.login_attempts} спроб входу")
+
+    def greet_user(self):
+        print(f"Вітаєм на сайті {self.fname} {self.lname}")
+
+class Privileges():
+    def __init__(self, privileges=['разрешено добавлять сообщения', 'разрешено удалять пользователей', 'разрешено банить пользователей']):
+        self.privileges=privileges
+    
+    def show_privileges(self):
+        for priv in self.privileges:
+            print(priv)
+
+
+
+class Admin(User):
+    def __init__(self, fname, lname, location, hobby):
+        super().__init__(fname, lname, location, hobby)
+        self.law=Privileges()
+
+    
+
+Slavik=Admin('Ярослав', 'Дільний', 'Україна', 'Порно')
+Slavik.law.show_privileges()
+
+#клас який кидає випадкове число на кубіку рубіку або іншому гранику
+from random import randint
+class Die():
+    def __init__(self, sides=6):
+        self.sides=sides
+
+    def roll_die(self):
+        print(randint(1, self.sides))
+        
+            
+
+Cube=Die()
+Megaminx=Die(sides=10)
+twenty_siders=Die(sides=20)
+twenty_siders.roll_die()
+
+
+#треба буде доробити
+from random import choice
+my_ticket=['z', '4', '2', '9', 'q', 'r', 'h', 'l', '5', '1']
+win_ticket=[]
+while len(my_ticket) != 4:
+    winer = choice(my_ticket.pop())
+    my_ticket.append(winer)
+
+print(my_ticket)
+
+#тестова функція
+def pidar():
+    a=input("Ти їбеш собак? пиши тільки так або ні")
+    if a.lower() == 'так':
+        print("Я так і знав")
+    elif a.lower() == 'ні':
+        print("Не тримай руки в гімні")
+    else:
+        print("Дебіл")
+pidar()
+
+#виведення тексту у файлі в консоль 
+filename='chicken.txt'
+with open(filename) as file_object:
+    for line in file_object:
+        print(line.rstrip())
+
+#створює список з рядків тексту
+filename='chicken.txt'
+with open(filename) as file_object:
+    lines = file_object.readlines()
+
+#виводить текст файла в один ряд і рахує к-ть символів
+strings=''
+for line in lines:
+    strings += line.strip()
+
+print(strings)
+print(len(strings))
+print(f"{strings[:100]}") # виводить перші 100 символів документа
+
+#Перевірка наявності слів в тексті
+capital=input("Де знаходиться англія?")
+if capital in strings:
+    print("Молодець ")
+else:
+    print("Блять дурне там шо не пише")
+print(strings.replace('United', 'loh')) #Заміна слова для виведення в консоль
+
+#запис тексту в файл за допомогою 'w'. 'r'- режим читання, 'a'- режим приєдання 'r+' - режим читання і запису
+filename='chicken.txt'
+with open(filename, 'w') as file_object:
+    file_object.write("Blyadina \n")
+    file_object.write("Blyadina \n")
+
+#приєднує додадково текст
+with open(filename, 'a') as file_object:
+    file_object.write("You stupit \n")
+    file_object.write("Shalava \n")
+
+#В блоку написаний неправильно код і в результаті виконується блок except. 
+В протилежному випадку блок except пропускається
+try:
+    print(5/0)
+except ZeroDivisionError:
+    print("Блять нізя")
+
+#З допомогою блоків try-except цикл дальше працює при виникненні помилки
+while True:
+    first_number = input("\nFirst number: ")
+    if first_number == 'q':
+        break
+    second_number = input("Second number: ")
+    if second_number == 'q':
+        break
+    try:
+        answer = int(first_number) / int(second_number)
+    except ZeroDivisionError:
+        print("блять дурак нахуй ти то робиш?")
+    else:
+        print(answer)
+
+#реагує на помилку відсутності файла
+    filename='shluha.txt'
+try:
+    with open(filename, encoding='utf-8') as f:
+        texts= f.read()
+except FileNotFoundError:
+    print("Походу той файл не в одній папці з кодом або такого файла не існує")
+
+# .split()- ділить текст на список слів в ньому
+Message="Син шлюхи"
+print(Message.split())
+
+#рахує к-ть слів в документі
+filename='python_code.txt'
+try:
+    with open(filename, encoding='utf-8') as f:
+        texts= f.read()
+except FileNotFoundError:
+    print("Походу той файл не в одній папці з кодом або такого файла не існує")
+else:
+    words = texts.split()
+    num_words = len(words)
+    print(f"в документі {filename} - {num_words} слів")
+
+#реалізація попереднього через функцію
+file_dock=[]
+def len_words_of_dock(filenmae):
+    try:
+        with open(filename, encoding='utf-8') as f:
+         texts= f.read()
+    except FileNotFoundError:
+        print("Походу той файл не в одній папці з кодом або такого файла не існує")
+    else:
+        words = texts.split()
+        num_words = len(words)
+        print(f"в документі {filename} - {num_words} слів")
+
+filename="chicken.txt"
+len_words_of_dock(filename)
+filename="python_code.txt"
+len_words_of_dock(filename)
+#цикл для перепахунку слів у всіх файлах 
+for filename in file_dock:
+    len_words_of_dock(filename)
+
+#вдосконалений калькулятор
+def arif():
+    while True:
+        try:
+            a=int(input("впиши число а:"))
+            b=int(input("впиши число b:"))
+            i=input("Яку дію виконати")
+        
+        except ValueError:
+            pass
+        try:
+            b=0
+            print(a/b)
+        except ZeroDivisionError:
+            pass
+        else:
+            if i == '+':
+                print(a+b)
+            elif i == '-':
+                print(a-b)
+            elif i == '*':
+                print(a*b)
+            elif i == '/':
+                print(a/b)
+            elif i == '**':
+                print(a**b)
+
+#Виводить к-ть певного слова в документі
+filename='python_code.txt'
+with open(filename) as file_object:
+    line=file_object.read()
+    line.count('def')
+    print(line.lower().count('def '))
+
+#збереження списку чисел через модуль json і функцію dump() в файл .json 
+і ф-ція load() для завантаження списку з файлу
+import json
+numb=list(range(1, 11))
+filename='chicken.json'
+with open(filename, 'w') as f:
+    json.dump(numb, f)
+
+#Виведення списку з файлу .json
+import json
+filename='chicken.json'
+with open(filename) as f:
+    numb = json.load(f)
+
+print(numb)   
+
+#приклад простого unitтеста. assert для точності отримання результата. assertEqual-для введення бажаного результату тесту
+import unittest
+from python_lesson import pidar
+
+class named_test(unittest.TestCase):
+    def names(self):
+        full=pidar('vladick', 'pidarko') 
+        self.assertEqual(full, 'vladick pidarko')
+
+if __name__ == '__main__':
+    unittest.main()
+
+#ссилка на репозиторій GitHub
+https://github.com/Gock-fugu/fugu.git
+
+
+
+#простий графік на matplotlib
+import matplotlib.pyplot as plt
+squares = [1, 4, 9, 16, 25]
+fig, ax = plt.subplots()
+ax.plot(squares)
+
+plt.show()
