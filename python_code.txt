@@ -895,12 +895,447 @@ if __name__ == '__main__':
 #ссилка на репозиторій GitHub
 https://github.com/Gock-fugu/fugu.git
 
+# сортування списку в алфавітному порядку при reverse=True сортує список в зворотньому порядку.
+love_brawlers=['piper', 'pem', 'barley', 'frank']
+love_brawlers.sort(reverse=True)
+print(love_brawlers)
 
+love_brawlers=['piper', 'pem', 'barley', 'frank']
+print(sorted(love_brawlers)) #тимчасове сортування списку 
+print(love_brawlers)#оригінальний список
+love_brawlers.reverse() #обернений оригінальний список
+print(love_brawlers)
+print(len(love_brawlers))#len виводить кількість елементів у списку
 
 #простий графік на matplotlib
 import matplotlib.pyplot as plt
 squares = [1, 4, 9, 16, 25]
 fig, ax = plt.subplots()
 ax.plot(squares)
-
 plt.show()
+
+#гра в очко на двох
+from random import choice
+cards=['Два♠️', 'Три♠️', 'Чотири♠️', 'П`ять♠️', 'Шість♠️', 'Сім♠️', 'Вісім♠️', 'Дев`ять♠️', 'Десять♠️', 'Валет♠️', 'Дама♠️', 'Король♠️', 'Туз♠️', 'Два♥️', 'Три♥️', 'Чотири♥️', 'П`ять♥️', 'Шість♥️', 'Сім♥️', 'Вісім♥️', 'Дев`ять♥️', 'Десять♥️', 'Валет♥️', 'Дама♥️', 'Король♥️', 'Туз♥️', 'Два♣️', 'Три♣️', 'Чотири♣️', 'П`ять♣️', 'Шість♣️', 'Сім♣️', 'Вісім♣️', 'Дев`ять♣️', 'Десять♣️', 'Валет♣️', 'Дама♣️', 'Король♣️', 'Туз♣️', 'Два♦️', 'Три♦️', 'Чотири♦️', 'П`ять♦️', 'Шість♦️', 'Сім♦️', 'Вісім♦️', 'Дев`ять♦️', 'Десять♦️', 'Валет♦️', 'Дама♦️', 'Король♦️', 'Туз♦️',]
+leave_cards=[]
+first_player=[]
+second_player=[]
+def new_ochko():
+    while True:
+        question=input("Готові зіграти в очко? Пиши тільки так або ні.")
+        if question.lower() == 'так':
+            while True:
+                question_2=input("Перший гравець витягуєш карту?")
+                if question_2.lower() == 'так':
+                    a=choice(cards)
+                    print(a)
+                    if a == 'Два♠️' or a == 'Два♥️' or a == 'Два♣️' or a == 'Два♦️':
+                        first_player.append(2)
+                    elif a == 'Три♠️' or a == 'Три♥️' or a == 'Три♣️' or a == 'Три♦️':
+                        first_player.append(3)
+                    elif a == 'Чотири♠️' or a == 'Чотири♥️' or a == 'Чотири♣️' or a == 'Чотири♦️':
+                        first_player.append(4)
+                    elif a == 'П`ять♠️' or a == 'П`ять♥️' or a == 'П`ять♣️' or a == 'П`ять♦️':
+                        first_player.append(5)
+                    elif a == 'Шість♠️' or a == 'Шість♥️' or a == 'Шість♣️' or a == 'Шість♦️':
+                        first_player.append(6)
+                    elif a == 'Сім♠️' or a == 'Сім♥️' or a == 'Сім♣️' or a == 'Сім♦️':
+                        first_player.append(7)
+                    elif a == 'Вісім♠️' or a == 'Вісім♥️' or a == 'Вісім♣️' or a == 'Вісім♦️':
+                        first_player.append(8)
+                    elif a == 'Дев`ять♠️' or a == 'Дев`ять♥️' or a == 'Дев`ять♣️' or a == 'Дев`ять♦️':
+                        first_player.append(9)
+                    elif a == 'Десять♠️' or a == 'Десять♥️' or a == 'Десять♣️' or a == 'Десять♦️':
+                        first_player.append(10)
+                    elif a == 'Валет♠️' or a == 'Валет♥️' or a == 'Валет♣️' or a == 'Валет♦️':
+                        first_player.append(2)
+                    elif a == 'Дама♠️' or a == 'Дама♥️' or a == 'Дама♣️' or a == 'Дама♦️':
+                        first_player.append(3)
+                    elif a == 'Король♠️' or a == 'Король♥️' or a == 'Король♣️' or a == 'Король♦️':
+                        first_player.append(4)
+                    elif a == 'Туз♠️' or a == 'Туз♥️' or a == 'Туз♣️' or a == 'Туз♦️':
+                        first_player.append(11)
+                   
+                elif question_2.lower() == 'ні':
+                    print("Перший гравець набрав:", sum(first_player))
+                    break
+            while True:
+                question_3=input("Другий гравець витягуєш карту?")
+                if question_3.lower() == 'так':
+                    a=choice(cards)
+                    print(a)
+                    if a == 'Два♠️' or a == 'Два♥️' or a == 'Два♣️' or a == 'Два♦️':
+                        second_player.append(2)
+                    elif a == 'Три♠️' or a == 'Три♥️' or a == 'Три♣️' or a == 'Три♦️':
+                        second_player.append(3)
+                    elif a == 'Чотири♠️' or a == 'Чотири♥️' or a == 'Чотири♣️' or a == 'Чотири♦️':
+                        second_player.append(4)
+                    elif a == 'П`ять♠️' or a == 'П`ять♥️' or a == 'П`ять♣️' or a == 'П`ять♦️':
+                        second_player.append(5)
+                    elif a == 'Шість♠️' or a == 'Шість♥️' or a == 'Шість♣️' or a == 'Шість♦️':
+                        second_player.append(6)
+                    elif a == 'Сім♠️' or a == 'Сім♥️' or a == 'Сім♣️' or a == 'Сім♦️':
+                        second_player.append(7)
+                    elif a == 'Вісім♠️' or a == 'Вісім♥️' or a == 'Вісім♣️' or a == 'Вісім♦️':
+                        second_player.append(8)
+                    elif a == 'Дев`ять♠️' or a == 'Дев`ять♥️' or a == 'Дев`ять♣️' or a == 'Дев`ять♦️':
+                        second_player.append(9)
+                    elif a == 'Десять♠️' or a == 'Десять♥️' or a == 'Десять♣️' or a == 'Десять♦️':
+                        second_player.append(10)
+                    elif a == 'Валет♠️' or a == 'Валет♥️' or a == 'Валет♣️' or a == 'Валет♦️':
+                        second_player.append(2)
+                    elif a == 'Дама♠️' or a == 'Дама♥️' or a == 'Дама♣️' or a == 'Дама♦️':
+                        second_player.append(3)
+                    elif a == 'Король♠️' or a == 'Король♥️' or a == 'Король♣️' or a == 'Король♦️':
+                        second_player.append(4)
+                    elif a == 'Туз♠️' or a == 'Туз♥️' or a == 'Туз♣️' or a == 'Туз♦️':
+                        second_player.append(11)
+                elif question_3.lower() == 'ні':
+                    print("Другий гравець набрав:", sum(second_player))
+                    break
+            if sum(first_player) > sum(second_player) and sum(first_player) <= 21:
+                print("перший гравець переміг")
+            elif sum(first_player) < sum(second_player) and sum(second_player) <= 21:
+                print("Другий гравець переміг")
+            elif sum(first_player) > 21 and sum(second_player)<=21:
+                print("Другий гравець переміг")
+            elif sum(second_player) > 21 and sum(first_player) <= 21:
+                print("перший гравець переміг")
+            elif sum(first_player) > 21 and sum(first_player) > 21:
+                print("Ви оба в програші")
+            elif sum(first_player)==sum(second_player):
+                print("Нічия")
+            elif first_player == [11, 11] and second_player!=[11, 11]:
+                print("Вау у першого гравця 2туза це однозначно виграш")
+            elif second_player == [11, 11] and first_player != [11, 11]:
+                print("Вау у Другого гравця 2туза це однозначно виграш")
+            while len(first_player) != 0:
+                del first_player[0]
+            while len(second_player) != 0:
+                del second_player[0]
+        elif question.lower() == 'ні':
+            break
+new_ochko()
+
+#А тут в 3 рази більше кодаfrom random import choice
+cards=['Два♠️', 'Три♠️', 'Чотири♠️', 'П`ять♠️', 'Шість♠️', 'Сім♠️', 'Вісім♠️', 'дев`ять♠️', 'Десять♠️', 'Валет♠️', 'Дама♠️', 'Король♠️', 'Туз♠️', 
+'Два♥️', 'Три♥️', 'Чотири♥️', 'П`ять♥️', 'Шість♥️', 'Сім♥️', 'Вісім♥️', 'дев`ять♥️', 'Десять♥️', 'Валет♥️', 'Дама♥️', 'Король♥️', 'Туз♥️', 
+'Два♣️', 'Три♣️', 'Чотири♣️', 'П`ять♣️', 'Шість♣️', 'Сім♣️', 'Вісім♣️', 'дев`ять♣️', 'Десять♣️', 'Валет♣️', 'Дама♣️', 'Король♣️', 'Туз♣️', 
+'Два♦️', 'Три♦️', 'Чотири♦️', 'П`ять♦️', 'Шість♦️', 'Сім♦️', 'Вісім♦️', 'дев`ять♦️', 'Десять♦️', 'Валет♦️', 'Дама♦️', 'Король♦️', 'Туз♦️',]
+first_player=[]
+second_player=[]
+def old_ochko():
+    while True:
+        question=input("Готові зіграти в очко? Пиши тільки так або ні.")
+        if question.lower() == 'так':
+            while True:
+                question_2=input("Перший гравець витягуєш карту?")
+                if question_2.lower() == 'так':
+                    a=choice(cards)
+                    print(a)
+                    if a == 'Два♠️':
+                        first_player.append(2)
+                    elif a == 'Три♠️':
+                        first_player.append(3)
+                    elif a == 'Чотири♠️':
+                        first_player.append(4)
+                    elif a == 'П`ять♠️':
+                        first_player.append(5)
+                    elif a == 'Шість♠️':
+                        first_player.append(6)
+                    elif a == 'Сім♠️':
+                        first_player.append(7)
+                    elif a == 'Вісім♠️':
+                        first_player.append(8)
+                    elif a == 'Дев`ять♠️':
+                        first_player.append(9)
+                    elif a == 'Десять♠️':
+                        first_player.append(10)
+                    elif a == 'Валет♠️':
+                        first_player.append(2)
+                    elif a == 'Дама♠️':
+                        first_player.append(3)
+                    elif a == 'Король♠️':
+                        first_player.append(4)
+                    elif a == 'Туз♠️':
+                        first_player.append(11)
+                    if a == 'Два♥️':
+                        first_player.append(2)
+                    elif a == 'Три♥️':
+                        first_player.append(3)
+                    elif a == 'Чотири♥️':
+                        first_player.append(4)
+                    elif a == 'П`ять♥️':
+                        first_player.append(5)
+                    elif a == 'Шість♥️':
+                        first_player.append(6)
+                    elif a == 'Сім♥️':
+                        first_player.append(7)
+                    elif a == 'Вісім♥️':
+                        first_player.append(8)
+                    elif a == 'Дев`ять♥️':
+                        first_player.append(9)
+                    elif a == 'Десять♥️':
+                        first_player.append(10)
+                    elif a == 'Валет♥️':
+                        first_player.append(2)
+                    elif a == 'Дама♥️':
+                        first_player.append(3)
+                    elif a == 'Король♥️':
+                        first_player.append(4)
+                    elif a == 'Туз♥️':
+                        first_player.append(11)
+                    if a == 'Два♣️':
+                        first_player.append(2)
+                    elif a == 'Три♣️':
+                        first_player.append(3)
+                    elif a == 'Чотири♣️':
+                        first_player.append(4)
+                    elif a == 'П`ять♣️':
+                        first_player.append(5)
+                    elif a == 'Шість♣️':
+                        first_player.append(6)
+                    elif a == 'Сім♣️':
+                        first_player.append(7)
+                    elif a == 'Вісім♣️':
+                        first_player.append(8)
+                    elif a == 'Дев`ять♣️':
+                        first_player.append(9)
+                    elif a == 'Десять♣️':
+                        first_player.append(10)
+                    elif a == 'Валет♣️':
+                        first_player.append(2)
+                    elif a == 'Дама♣️':
+                        first_player.append(3)
+                    elif a == 'Король♣️':
+                        first_player.append(4)
+                    elif a == 'Туз♣️':
+                        first_player.append(11)
+                    if a == 'Два♣️':
+                        first_player.append(2)
+                    elif a == 'Три♣️':
+                        first_player.append(3)
+                    elif a == 'Чотири♣️':
+                        first_player.append(4)
+                    elif a == 'П`ять♣️':
+                        first_player.append(5)
+                    elif a == 'Шість♣️':
+                        first_player.append(6)
+                    elif a == 'Сім♣️':
+                        first_player.append(7)
+                    elif a == 'Вісім♣️':
+                        first_player.append(8)
+                    elif a == 'Дев`ять♣️':
+                        first_player.append(9)
+                    elif a == 'Десять♣️':
+                        first_player.append(10)
+                    elif a == 'Валет♣️':
+                        first_player.append(2)
+                    elif a == 'Дама♣️':
+                        first_player.append(3)
+                    elif a == 'Король♣️':
+                        first_player.append(4)
+                    elif a == 'Туз♣️':
+                        first_player.append(11)
+                    if a == 'Два♦️':
+                        first_player.append(2)
+                    elif a == 'Три♦️':
+                        first_player.append(3)
+                    elif a == 'Чотири♦️':
+                        first_player.append(4)
+                    elif a == 'П`ять♦️':
+                        first_player.append(5)
+                    elif a == 'Шість♦️':
+                        first_player.append(6)
+                    elif a == 'Сім♦️':
+                        first_player.append(7)
+                    elif a == 'Вісім♦️':
+                        first_player.append(8)
+                    elif a == 'дев`ять♦️':
+                        first_player.append(9)
+                    elif a == 'Десять♦️':
+                        first_player.append(10)
+                    elif a == 'Валет♦️':
+                        first_player.append(2)
+                    elif a == 'Дама♦️':
+                        first_player.append(3)
+                    elif a == 'Король♦️':
+                        first_player.append(4)
+                    elif a == 'Туз♦️':
+                        first_player.append(11)
+                elif question_2.lower() == 'ні':
+                    print("Перший гравець набрав:", sum(first_player))
+                    break
+            while True:
+                question_3=input("Другий гравець витягуєш карту?")
+                if question_3.lower() == 'так':
+                    a=choice(cards)
+                    print(a)
+                    if a == 'Два♠️':
+                        second_player.append(2)
+                    elif a == 'Три♠️':
+                        second_player.append(3)
+                    elif a == 'Чотири♠️':
+                        second_player.append(4)
+                    elif a == 'П`ять♠️':
+                        second_player.append(5)
+                    elif a == 'Шість♠️':
+                        second_player.append(6)
+                    elif a == 'Сім♠️':
+                        second_player.append(7)
+                    elif a == 'Вісім♠️':
+                        second_player.append(8)
+                    elif a == 'Дев`ять♠️':
+                        second_player.append(9)
+                    elif a == 'Десять♠️':
+                        second_player.append(10)
+                    elif a == 'Валет♠️':
+                        second_player.append(2)
+                    elif a == 'Дама♠️':
+                        second_player.append(3)
+                    elif a == 'Король♠️':
+                        second_player.append(4)
+                    elif a == 'Туз♠️':
+                        second_player.append(11)
+                    if a == 'Два♥️':
+                        second_player.append(2)
+                    elif a == 'Три♥️':
+                        second_player.append(3)
+                    elif a == 'Чотири♥️':
+                        second_player.append(4)
+                    elif a == 'П`ять♥️':
+                        second_player.append(5)
+                    elif a == 'Шість♥️':
+                        second_player.append(6)
+                    elif a == 'Сім♥️':
+                        second_player.append(7)
+                    elif a == 'Вісім♥️':
+                        second_player.append(8)
+                    elif a == 'Дев`ять♥️':
+                        second_player.append(9)
+                    elif a == 'Десять♥️':
+                        second_player.append(10)
+                    elif a == 'Валет♥️':
+                        second_player.append(2)
+                    elif a == 'Дама♥️':
+                        second_player.append(3)
+                    elif a == 'Король♥️':
+                        second_player.append(4)
+                    elif a == 'Туз♥️':
+                        second_player.append(11)
+                    if a == 'Два♣️':
+                        second_player.append(2)
+                    elif a == 'Три♣️':
+                        second_player.append(3)
+                    elif a == 'Чотири♣️':
+                        second_player.append(4)
+                    elif a == 'П`ять♣️':
+                        second_player.append(5)
+                    elif a == 'Шість♣️':
+                        second_player.append(6)
+                    elif a == 'Сім♣️':
+                        second_player.append(7)
+                    elif a == 'Вісім♣️':
+                        second_player.append(8)
+                    elif a == 'Дев`ять♣️':
+                        second_player.append(9)
+                    elif a == 'Десять♣️':
+                        second_player.append(10)
+                    elif a == 'Валет♣️':
+                        second_player.append(2)
+                    elif a == 'Дама♣️':
+                        second_player.append(3)
+                    elif a == 'Король♣️':
+                        second_player.append(4)
+                    elif a == 'Туз♣️':
+                        second_player.append(11)
+                    if a == 'Два♣️':
+                        second_player.append(2)
+                    elif a == 'Три♣️':
+                        second_player.append(3)
+                    elif a == 'Чотири♣️':
+                        second_player.append(4)
+                    elif a == 'П`ять♣️':
+                        second_player.append(5)
+                    elif a == 'Шість♣️':
+                        second_player.append(6)
+                    elif a == 'Сім♣️':
+                        second_player.append(7)
+                    elif a == 'Вісім♣️':
+                        second_player.append(8)
+                    elif a == 'Дев`ять♣️':
+                        second_player.append(9)
+                    elif a == 'Десять♣️':
+                        second_player.append(10)
+                    elif a == 'Валет♣️':
+                        second_player.append(2)
+                    elif a == 'Дама♣️':
+                        second_player.append(3)
+                    elif a == 'Король♣️':
+                        second_player.append(4)
+                    elif a == 'Туз♣️':
+                        second_player.append(11)
+                    if a == 'Два♦️':
+                        second_player.append(2)
+                    elif a == 'Три♦️':
+                        second_player.append(3)
+                    elif a == 'Чотири♦️':
+                        second_player.append(4)
+                    elif a == 'П`ять♦️':
+                        second_player.append(5)
+                    elif a == 'Шість♦️':
+                        second_player.append(6)
+                    elif a == 'Сім♦️':
+                        second_player.append(7)
+                    elif a == 'Вісім♦️':
+                        second_player.append(8)
+                    elif a == 'дев`ять♦️':
+                        second_player.append(9)
+                    elif a == 'Десять♦️':
+                        second_player.append(10)
+                    elif a == 'Валет♦️':
+                        second_player.append(2)
+                    elif a == 'Дама♦️':
+                        second_player.append(3)
+                    elif a == 'Король♦️':
+                        second_player.append(4)
+                    elif a == 'Туз♦️':
+                        second_player.append(11)
+                elif question_3.lower() == 'ні':
+                    print("Другий гравець набрав:", sum(second_player))
+                    break
+            if sum(first_player) > sum(second_player) and sum(first_player) <= 21:
+                print("перший гравець переміг")
+            elif sum(first_player) < sum(second_player) and sum(second_player) <= 21:
+                print("другий гравець переміг")
+            elif sum(first_player) > 21 and sum(second_player)<=21:
+                print("другий гравець переміг")
+            elif sum(second_player) > 21 and sum(first_player) <= 21:
+                print("перший гравець переміг")
+            elif sum(first_player) > 21 and sum(first_player) > 21:
+                print("Ви оба в програші")
+            elif sum(first_player)==sum(second_player):
+                print("Нічия")
+            elif first_player == [11, 11] and second_player!=[11, 11]:
+                print("Вау у першого гравця 2туза це однозначно виграш")
+            elif second_player == [11, 11] and first_player != [11, 11]:
+                print("Вау у другого гравця 2туза це однозначно виграш")
+            while len(first_player) != 0:
+                del first_player[0]
+            while len(second_player) != 0:
+                del second_player[0]
+        elif question.lower() == 'ні':
+            break
+
+old_ochko()
+
+# проста програма на PyQt6
+from PyQt6.QtWidgets import QApplication, QWidget
+
+app = QApplication([])
+
+window = QWidget()
+
+window.show()
+
+app.exec()
