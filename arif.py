@@ -8,16 +8,8 @@ def arif():
         except ValueError:
             pass
         try:
-            if i == '+':
-                print(a, '+', b, '=', a+b)
-            elif i == '-':
-                print(a, '-', b, '=', a-b)
-            elif i == '*':
-                print(a, '*', b, '=', a*b)
-            elif i == '/':
-                print(a, '/', b, '=', a/b)
-            elif i == '**':
-                print(a, '**', b, '=', a**b)
+            print(f'{a}+{b}={a+b}' if i=='+' else (f'{a}-{b}={a-b}' if i=='-' else (f'{a}*{b}={a*b}' if i=='*' else (f'{a}/{b}={a/b}' if i=='/' else None))))
+
         except ZeroDivisionError:
             print("На 0 не ділиться")
         
