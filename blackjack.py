@@ -2,8 +2,7 @@ import random, itertools
 Decks=random.sample([''.join(card) for card in itertools.product([x for n in ([str(i) for i in range(2, 11)],['J', 'Q', 'K', 'A']) for x in n], ['♠️', '♣️', '♥️', '♦️'])]*6, 312)
 
 class BlackJack():
-    def __init__(self, leave_cards=[], Player=[], Diler=[]):
-        self.leave_cards=leave_cards
+    def __init__(self, Player=[], Diler=[]):
         self.Player=Player
         self.Diler=Diler
     
@@ -26,5 +25,6 @@ class BlackJack():
                     print(f"{self.Player}, {self.Diler}\n {[int(c[0]) if c[0].isdigit() else (10 if '10' or 'J' or 'Q' or 'K' in c else 11) for c in self.Player]}, {[int(c[0]) if c[0].isdigit() else (10 if '10' or 'J' or 'Q' or 'K' in c else 11) for c in self.Diler]}")
                     self.Player.clear(), self.Diler.clear()
                     break
+
 for i in range(1000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_000_0000):    
     BlackJack().Play()
